@@ -21,7 +21,8 @@ ASCII_ORDERS = {
         "0",
         "K",
         "N",
-    )
+    ),
+    "better": ("@", "#", "8", "&", "o", ":", "*", ".", " "),
 }
 
 
@@ -34,8 +35,8 @@ def convert_to_ascii(input_grays):
     return tuple(convert_row_to_ascii(row) for row in input_grays)
 
 
-def convert_image_to_ascii(resolution: int):
-    img = cv2.imread("test.png")
+def convert_image_to_ascii(input, resolution: int):
+    img = cv2.imread(input)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = cv2.resize(img, (resolution, resolution))
     # cv2.imshow("Image", img)
@@ -52,11 +53,13 @@ def main():
     parser.add_argument(
         "--resolution", type=int, default=128, help="Resolution (default is 128)"
     )
+    parser.add_argument("--input", type=str, help="Filepath for input image")
 
     args = parser.parse_args()
     resolution = args.resolution
+    input = args.input
 
-    convert_image_to_ascii(resolution)
+    convert_image_to_ascii(input, resolution)
 
 
 if __name__ == "__main__":

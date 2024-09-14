@@ -27,8 +27,8 @@ ASCII_ORDERS = {
 
 
 def convert_row_to_ascii(row):
-    order = ASCII_ORDERS["basic"]
-    return tuple(order[int(x / (255 / 16))] for x in row)[::-1]
+    order = ASCII_ORDERS["better"]
+    return tuple(order[int(x / (255 / len(order)))] for x in row)[::-1]
 
 
 def convert_to_ascii(input_grays):
